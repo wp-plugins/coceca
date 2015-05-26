@@ -15,6 +15,10 @@ CoCeCa boasts of an amazing collection of plugins that can help improve the usab
 
 CoCeCa boasts of an amazing collection of plugins that can help improve the usability, efficiency and functionality of your WordPress website. By downloading and installing CoCeCa, you can benefit from its extensive collection of WordPress plugins, to help increase the overall experience of your website. So, whether you’re looking to manage your website conveniently, Increase the overall simplicity of your website, Generate Leads or Increase visitor engagement, CoCeCa has a selection of amazing WordPress plugin solutions for you to choose from.
 
+CTA Plugin!
+The CTA plugin is one of many innovative WordPressplugins embedded in the master plugin – CoCeCa.It’s effectiveness comes from the fact that the plugin is designed to help you maximize flexibility while increasing user engagement and decreasing bounce rate. The CTA plugin can be easily customized to suit your needs due to its ever increasing array of extended features and functions. The plugin offers a truly effective solution which helps to reduce or eliminate bounce rate from your site by creating room for user engagement, through special offers, related articles, videos, images and lots more. As a result of the benefits and features it offers, the CTA plugin has been employed in major platforms like YouTube to help increase engagement, by allowing users to interact with various pages and videos, instead of one.  
+
+
 == Installation ==
 
 Install from WordPress Dashboard:
