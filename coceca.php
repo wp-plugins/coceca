@@ -37,7 +37,6 @@ if(is_admin()){
 
 
     if(class_exists('Coceca_Plugin'))
-
     {
 
         // Installation and uninstallation hooks

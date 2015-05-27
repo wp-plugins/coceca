@@ -171,6 +171,8 @@ function CallAPI($method, $url, $data = false)
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
 
+    //echo $url; die;
+
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array('X-Requested-With:XMLHttpRequest'));
