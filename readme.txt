@@ -77,6 +77,10 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Screenshots ==
 
+1. Here is where you can add/edit new Call To Action and control its contents where it should be displayed.
+2. Here also you can control other parts of Call To Action such as when it should be displayed and for how long. Also you can choose and dine rule of which page/post or device the Call To Action should be displayed. You can always click on “Preview” to see how the Call To Action will look like before you approve it.
+3. Here is the specific page where you can add endless number of rules for all your Call To Action, so you can create many Call To Action and play them around where and when they should be displayed, or perhaps you can define rules for some to be displayed on Desktops while others on only Mobile devices.
+4. You can see all your Call To Action you have created here in one page, you can choose which one to activate or deactivate any of them by one click.
 
 == Changelog ==
 
