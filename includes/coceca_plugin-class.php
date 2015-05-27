@@ -129,6 +129,7 @@ if(!class_exists('Coceca_Plugin')){
             $installed_plugins = get_plugins();
             if(array_key_exists('coceca/coceca.php',$installed_plugins)){
                 InsertActivateDownload(1,'');
+                update_option('EXT_SITE_URL', 'https://coceca.com/members_area/');
             }
         }
 
@@ -140,21 +141,9 @@ if(!class_exists('Coceca_Plugin')){
             $installed_plugins = get_plugins();
             if(array_key_exists('coceca/coceca.php',$installed_plugins)){
                 UpdateActivateDownload(1,'');
+                update_option('EXT_SITE_URL', '');
             }
 
-            /*
-             * Deactivate All Child Plugins when parent deactivated
-             * */
-            /*$all_plugins = list_extentions();
-            if(!empty($all_plugins)){
-                foreach($all_plugins as $plugin){
-                    if(!empty($plugin['activate_path'])){
-                        if(array_key_exists($plugin['activate_path'],$installed_plugins)){
-                            deactivate_plugins($plugin['activate_path']);
-                        }
-                    }
-                }
-            }*/
         }
 
 
