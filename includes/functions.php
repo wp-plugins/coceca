@@ -77,18 +77,6 @@ function checkPluginSourceExists($file_exists){
         else{
             return false;
         }
-        /*$plugin_dir_path = plugin_dir_path(dirname(dirname(__FILE__)));
-        if(!empty($plugin_exists)){
-            $plugin_dir = $plugin_dir_path.$plugin_exists[0];
-            if(is_dir($plugin_dir)){
-                if(file_exists($plugin_dir.'/'.$plugin_exists[1])){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-        }*/
     }else{
         return false;
     }

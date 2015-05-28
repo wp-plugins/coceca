@@ -182,7 +182,7 @@ if(!class_exists('Coceca_Plugin')){
             }
             if(isset($_GET['msg']) && $_GET['msg'] == 'email'){
                 echo '<div id="message" class="updated fade"><p>We have emailed you, click on the link to be able to access your CoCeCa member area. (Check the spam/junk folder if you can\'t locate the email).</p></div>';
-                //$_SERVER['REQUEST_URI'] = remove_query_arg(array('message'), $_SERVER['REQUEST_URI']);
+                $_SERVER['REQUEST_URI'] = remove_query_arg(array('message'), $_SERVER['REQUEST_URI']);
             }
 
             // Return early if processing a plugin installation action.
@@ -219,7 +219,6 @@ if(!class_exists('Coceca_Plugin')){
             $is_paypal = false;
 
             $response = '';
-            //$encrpted_string = encrptedString(getHost().':'.absint($_GET['plugin_id']));
             $coupon_code = $paypal_payment = $coupon_data= '';
             $coupon_code = $_POST['coupon_code'];
             if(isset($coupon_code) && $coupon_code!=''){
@@ -254,7 +253,6 @@ if(!class_exists('Coceca_Plugin')){
             }
 
             echo json_encode($response); die;
-            //wp_redirect($redirect_url);
             exit();
         }
 

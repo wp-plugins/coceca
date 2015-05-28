@@ -9,28 +9,18 @@
     Provides : CoCeCa
 */
 
-
-
 if(is_admin()){
 
     defined( 'ABSPATH' ) or die( 'Plugin file cannot be accessed directly.' );
-
-
-
     define( 'COCECA_PLUGIN_VERSION', '0.1' );
-
     define( 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-
     define( 'COCECA_PLUGIN_NAME', trim( dirname( PLUGIN_BASENAME ), '/' ) );
-
     define( 'COCECA_PLUGIN_DIR', untrailingslashit( dirname( __FILE__ ) ) );
-
     define( 'COCECA_PLUGIN_URL', untrailingslashit( plugins_url( '', __FILE__ ) ) );
 
 
 
     require_once COCECA_PLUGIN_DIR . '/includes/functions.php';
-
     require_once COCECA_PLUGIN_DIR . '/includes/coceca_plugin-class.php';
     require_once COCECA_PLUGIN_DIR . '/includes/plugin-dependencies.php';
 
@@ -38,15 +28,9 @@ if(is_admin()){
 
     if(class_exists('Coceca_Plugin'))
     {
-
         // Installation and uninstallation hooks
-
        register_activation_hook(__FILE__, array('Coceca_Plugin', 'activate'));
-
        register_deactivation_hook(__FILE__, array('Coceca_Plugin', 'deactivate'));
-
-      //  $coceca_plugin = new Coceca_Plugin();
-
     }
 
 }

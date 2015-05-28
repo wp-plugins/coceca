@@ -84,6 +84,9 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Changelog ==
 
-= 1.0 =
+= 1.1.1 =
+* Removed Update Checker from that version.
 
+Released
+= 1.0 =
 Released
