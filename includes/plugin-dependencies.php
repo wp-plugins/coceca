@@ -741,7 +741,7 @@ class Plugin_Dependencies_UI {
 			else {
 				$class = 'satisfied';
 				//$title = __( 'Dependency: Satisfied', 'plugin-dependencies' );
-				$title = __( 'Required plugins', 'plugin-dependencies' );
+				$title = __( 'Requires CoCeCa plugin to work', 'plugin-dependencies' );
 			}
 
 			if ( empty( $plugin_ids ) ) {
@@ -780,7 +780,8 @@ class Plugin_Dependencies_UI {
 					}
 
 					if ( false !== $url ) {
-						$list[] = html( 'a', array( 'href' => $url, 'title' => $title ), $name );
+						//$list[] = html( 'a', array( 'href' => $url, 'title' => $title ), $name );
+						$list[] = html( 'a', array( 'href' => $url, 'title' => $title ), 'Requires CoCeCa plugin to work' );
 					}
 					else {
 						$list[] = html( 'span', array( 'title' => $title ), $name );
