@@ -7,9 +7,11 @@
 ?>
 
 <?php if(!empty($results_domain)): ?>
-<p class="display_email">Your registered email address :- <b><?php echo (!empty($results_domain)) ? $results_domain['email_address'] : ''; ?></b></p>
+<p class="display_email">Your registered email address :- <b><?php echo (!empty($results_domain)) ? $results_domain['email_address'] : ''; ?></b> <a target="_blank" href="<?php echo EXT_SITE_URL.'user/login'; ?>">Click here to CoCeCa member area</a></p>
 <?php endif; ?>
-
+<?php if(empty($results_domain['email_address'])): ?>
+    <p class="submit_email"><a href="javascript:void(0)" onclick="getUserEmail();"><b>Click here to get a full access to CoCeCa member area</b></a></p>
+<?php endif; ?>
 <div id="welcome-panel" class="<?php echo esc_attr( $classes ); ?>">
     <p>CTA plugin is an innovative solution designed to help you grow your WordPress blog. It creates an opportunity for you to promote your WordPress Websites & Blogs and engage your site visitors, in more ways than one.</p>
 </div>
@@ -74,5 +76,7 @@
 <p class="support_text_cta">
     <a target="_blank" href="<?php echo COCECA_SITE_URL; ?>">Get Started</a>&nbsp; | &nbsp; <a target="_blank" href="<?php echo COCECA_SITE_URL.'help/'; ?>">Support</a>
 </p>
-
+<style>
+    .submit_email{ text-align: right;} .submit_email a{ text-decoration: none;}
+</style>
 <?php include_once('email_popup.php'); ?>

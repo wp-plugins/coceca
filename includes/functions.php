@@ -228,6 +228,19 @@ function UpdateActivateDownload($mpid='',$cpid=''){
     return json_decode($result,true);
 }
 
+function user_activate_deactivate_plugins($m_p_id='',$user_id){
+    $api_data = array(
+        'is_json'=>'1',
+        'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
+        'host_name'=>getHost(),
+        'm_p_id' =>$m_p_id,
+        'user_id' =>$user_id,
+    );
+    $result = CallAPI('GET',EXT_SITE_URL.'wpapi/user_activate_deactivate_plugins/',$api_data);
+    //print_r($result); die;
+    return json_decode($result,true);
+}
+
 function syonencryptor($action, $string)
 {
     $output = false;

@@ -276,14 +276,20 @@ if(!class_exists('Coceca_Plugin')){
          * */
          public function sendEmailRegister(){
              if(isset($_POST['email_address']) && !empty($_POST['email_address'])){
-                 $api_data = array(
-                     'is_json'=>'1',
-                     'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
-                     'user_host'=>getHost(),
-                     'email_address'=>$_POST['email_address']
-                 );
-                 $result = CallAPI('GET',EXT_SITE_URL.'index/send_email/',$api_data);
-                 echo $result; die;
+                 if (!filter_var(trim($_POST['email_address']), FILTER_VALIDATE_EMAIL))
+                 {
+                     echo json_encode(array('flag'=>'error','msg'=>'Please enter a valid email address')); die;
+                 }
+                 else{
+                     $api_data = array(
+                         'is_json'=>'1',
+                         'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
+                         'user_host'=>getHost(),
+                         'email_address'=>$_POST['email_address']
+                     );
+                     $result = CallAPI('GET',EXT_SITE_URL.'index/send_email/',$api_data);
+                     echo $result; die;
+                 }
              }
              else{
                  echo json_encode(array('flag'=>'error','msg'=>'Please enter email address.')); die;
@@ -297,9 +303,9 @@ if(!class_exists('Coceca_Plugin')){
            wp_enqueue_style('coceca-plugin-admin', EXT_SITE_URL.'coceca/css/style.css', array(), COCECA_PLUGIN_VERSION, 'all' );
            wp_enqueue_script('script_js', EXT_SITE_URL.'coceca/js/script.js', array('jquery'), COCECA_PLUGIN_VERSION, 'all' );
 
-            if($this->page == 'add_exentions'){
+            //if($this->page == 'add_exentions'){
                 wp_enqueue_script('check_host_email_js', EXT_SITE_URL.'coceca/js/check_host_email.js', array('jquery'), COCECA_PLUGIN_VERSION, 'all' );
-            }
+          //  }
 
             $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
             $main_uri =  $protocol.$_SERVER['HTTP_HOST'].'/';

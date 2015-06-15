@@ -3,7 +3,7 @@
     Plugin Name: CoCeCa
     Description: CTA plugin is an innovative solution designed to help you grow your WordPress blog. It creates an opportunity for you to promote your WordPress Websites & Blogs and engage your site visitors, in more ways than one.
     Author: CoCeCa
-    Version: 1.0
+    Version: 2.0
     Plugin URI: http://coceca.com/
     Author URI: http://coceca.com/help/
     Provides : CoCeCa
