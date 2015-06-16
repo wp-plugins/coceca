@@ -84,7 +84,7 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Changelog ==
 
-= 2.0 =
+= 1.1 =
 * Removed Update Checker from that version.
 * Removed Required email functionality on plugin page load.
 * fixed all minur bugs
