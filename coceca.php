@@ -12,7 +12,7 @@
 if(is_admin()){
 
     defined( 'ABSPATH' ) or die( 'Plugin file cannot be accessed directly.' );
-    define( 'COCECA_PLUGIN_VERSION', '0.1' );
+    define( 'COCECA_PLUGIN_VERSION', '1.0' );
     define( 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
     define( 'COCECA_PLUGIN_NAME', trim( dirname( PLUGIN_BASENAME ), '/' ) );
     define( 'COCECA_PLUGIN_DIR', untrailingslashit( dirname( __FILE__ ) ) );
