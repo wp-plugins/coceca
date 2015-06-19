@@ -159,7 +159,7 @@ function CallAPI($method, $url, $data = false)
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
 
-    //echo $url; die;
+   //echo $url; die;
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -228,16 +228,30 @@ function UpdateActivateDownload($mpid='',$cpid=''){
     return json_decode($result,true);
 }
 
-function user_activate_deactivate_plugins($m_p_id='',$user_id){
+function user_activate_deactivate_plugins($m_p_id='',$user_id,$activate_deactive){
     $api_data = array(
         'is_json'=>'1',
         'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
         'host_name'=>getHost(),
         'm_p_id' =>$m_p_id,
         'user_id' =>$user_id,
+        'is_activated' =>$activate_deactive
     );
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/user_activate_deactivate_plugins/',$api_data);
     //print_r($result); die;
+    return json_decode($result,true);
+}
+
+function coceca_active_deactive($m_p_id='',$user_id='',$activate_deactive){
+    $api_data = array(
+        'is_json'=>'1',
+        'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
+        'host_name'=>getHost(),
+        'm_p_id' =>$m_p_id,
+        'user_id' =>$user_id,
+        'is_activated' =>$activate_deactive
+    );
+    $result = CallAPI('GET',EXT_SITE_URL.'wpapi/coceca_active_deactive/',$api_data);
     return json_decode($result,true);
 }
 
