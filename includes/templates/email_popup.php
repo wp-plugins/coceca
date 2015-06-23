@@ -17,7 +17,10 @@
     label.error{ color: red; font-weight: bold;}
 </style>
 
-
+<?php
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+$admin_redirect_uri =  $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+?>
 <div id="confirm_popup" style="display: none; width: 350px;">
     <form name="confirm_payment" id="confirm_payment" action="" method="post">
         <div id="confirmMessage" style="text-align: center; display: none;"></div>
@@ -29,6 +32,7 @@
         <div class="input-row">
             <input type="text" placeholder="Enter coupon code here.." style="display: none;" name="check_coupon_code" id="check_coupon_code" value="">
             <input type="hidden" style="display: none;" name="paypal_url" id="paypal_url" value="paypal_payment">
+            <input type="hidden" id="admin_redirect_uri" name="admin_redirect_uri" value="<?php echo $admin_redirect_uri; ?>">
         </div>
         <div class="input-row">
             <input type="submit" id="apply_coupon" value="Proceed" class="button button-primary button-large">

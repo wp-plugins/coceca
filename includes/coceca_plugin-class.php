@@ -216,12 +216,13 @@ if(!class_exists('Coceca_Plugin')){
         * */
         function coceca_upgradeMembership(){
             global $wpdb;
+
             if(!check_admin_referer( 'gopro-CoCeCa_'.absint($_GET['plugin_id']), 'com_nonce' ) ) {
                 wp_die('You have taken too long. Please go back and retry.', '', array( 'response' => 403 ) );
             }
 
             $is_paypal = false;
-
+            $admin_redirect_uri = $_POST['admin_redirect_uri'];
             $response = '';
             $coupon_code = $paypal_payment = $coupon_data= '';
             $coupon_code = $_POST['coupon_code'];
@@ -247,7 +248,7 @@ if(!class_exists('Coceca_Plugin')){
             }
 
             $encrpted_string = syonencryptor('encrypt',getHost().':'.absint($_GET['plugin_id']));
-            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint($_GET['plugin_id']).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.admin_url();
+            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint($_GET['plugin_id']).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.$admin_redirect_uri;
 
             if(!empty($coupon_data)){
                 $response['redirect_url'] = $redirect_url;
