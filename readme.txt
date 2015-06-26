@@ -89,6 +89,10 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Changelog ==
 
+
+= 1.4 =
+* Fixed some errors and issues 
+
 = 1.3 =
 * Modified some issues 
 * Fixed some issues 

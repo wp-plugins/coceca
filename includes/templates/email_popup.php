@@ -1,6 +1,6 @@
 <div class="email_popup_box" id="email_popup_box" style="display: none;">
     <form action="" id="getEmail" name="getEmail">
-        <h3><?php echo $title; ?></h3>
+        <h3>Email Address</h3>
         <div class="inputBox">
             <input type="text" class="regular-text" name="email_address" id="email_address" placeholder="Please enter email address" value=""><br>
             <p class="fade_font">Why? to use the trail period. Also, no worries, we hate spam too.</p>
@@ -11,6 +11,7 @@
     </form>
 </div>
 <style type="text/css">
+    #getEmail h3{ text-align: center;}
     .inputBox{ text-align: center;}
     .inputBox input[type="text"].error{ border-color: red;}
     .inputBox input[type="submit"]{ margin-top: 10px;}
