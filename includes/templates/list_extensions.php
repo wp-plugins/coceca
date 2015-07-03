@@ -38,10 +38,11 @@
                             $plugin_url = activate_url($this->menu,$plugins['id'],$plugin_slug,$plugins['plugin_title'],$plugins['plugin_source'],$plugins['activate_path']);
 
                             $plugin_activate_url = plugin_activate($this->menu,$plugin_slug,$plugins['plugin_title'],$plugins['plugin_source'],$plugins['activate_path']);
+                          //  echo $plugin_activate_url;
                         }
 
-                        if($plugins['id'] == 1){
-                            $plugin_page_url = admin_url('admin.php?page=cta_manage');
+                        if(!empty($plugins['plugin_page_url'])){
+                            $plugin_page_url = admin_url($plugins['plugin_page_url']);
                         }else{
                             $plugin_page_url = admin_url('plugins.php');
                         }

@@ -89,6 +89,9 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Changelog ==
 
+= 1.5 =
+* Resolved issue of duplicate functions 
+* Resolved warnings at time of activation
 
 = 1.4 =
 * Fixed some errors and issues 

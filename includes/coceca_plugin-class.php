@@ -121,7 +121,7 @@ if(!class_exists('Coceca_Plugin')){
             unset($submenu['coceca'][0]);
         }
 
-        public function activate(){
+        public static function activate(){
             /***Insert Update Activate and Download***/
             if ( ! function_exists( 'get_plugins' ) ) {
                 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -135,7 +135,7 @@ if(!class_exists('Coceca_Plugin')){
             }
         }
 
-        public function deactivate(){
+        public static function deactivate(){
             /***Update Activate and Download***/
             if ( ! function_exists( 'get_plugins' ) ) {
                 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -224,7 +224,7 @@ if(!class_exists('Coceca_Plugin')){
             $is_paypal = false;
             $admin_redirect_uri = $_POST['admin_redirect_uri'];
             $response = '';
-            $coupon_code = $paypal_payment = $coupon_data= '';
+            $coupon_code = $paypal_payment = $coupon_data= $coupon_data_sr = '';
             $coupon_code = $_POST['coupon_code'];
             if(isset($coupon_code) && $coupon_code!=''){
                 $coupon_data = checkValidCoupon($coupon_code);
@@ -520,7 +520,7 @@ if(!class_exists('Coceca_Plugin')){
                 // Populate $plugin array with necessary information.
                 $plugin['name']   = $_GET['plugin_name'];
                 $plugin['slug']   = $_GET['plugin'];
-                $plugin['source'] = $_GET['plugin_source'];
+                $plugin['source'] = isset($_GET['plugin_source']) ? $_GET['plugin_source'] : '';
 
                 $plugin_data = get_plugins( '/' . $plugin['slug'] ); // Retrieve all plugins.
                 $plugin_file = array_keys( $plugin_data ); // Retrieve all plugin files from installed plugins.
