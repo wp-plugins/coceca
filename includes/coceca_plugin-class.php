@@ -227,11 +227,13 @@ if(!class_exists('Coceca_Plugin')){
             $coupon_code = $paypal_payment = $coupon_data= $coupon_data_sr = '';
             $coupon_code = $_POST['coupon_code'];
             if(isset($coupon_code) && $coupon_code!=''){
+                $coupon_sepcial_chr = preg_replace('/[^a-zA-Z0-9 \[\]\.\-]/s', '', $coupon_code);
                 $coupon_data = checkValidCoupon($coupon_code);
+
                 if($coupon_data!='' && count($coupon_data) > 0){
                     $response['flag'] = 'success';
                     $response['msg'] = 'Valid coupon code.';
-                    $coupon_data_sr = serialize($coupon_data);
+                    $coupon_data_sr = toPublicId($coupon_data['id']);
                 }
                 else{
                     $response['flag'] = 'error';
@@ -248,7 +250,7 @@ if(!class_exists('Coceca_Plugin')){
             }
 
             $encrpted_string = syonencryptor('encrypt',getHost().':'.absint($_GET['plugin_id']));
-            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint($_GET['plugin_id']).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.$admin_redirect_uri;
+            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint(toPublicId($_GET['plugin_id'])).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.$admin_redirect_uri;
 
             if(!empty($coupon_data)){
                 $response['redirect_url'] = $redirect_url;

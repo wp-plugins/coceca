@@ -289,3 +289,17 @@ function checkValidCoupon($coupon_code){
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/checkValidCoupon/',$api_data);
     return json_decode($result,true);
 }
+
+if(!function_exists('toPublicId')){
+    function toPublicId($id)
+    {
+        return $id * 14981488888 + 8259204988888;
+    }
+}
+
+if (!function_exists('toInternalId')) {
+    function toInternalId($publicId)
+    {
+        return ($publicId - 8259204988888) / 14981488888;
+    }
+}
