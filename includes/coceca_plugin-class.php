@@ -121,7 +121,7 @@ if(!class_exists('Coceca_Plugin')){
             unset($submenu['coceca'][0]);
         }
 
-        public function activate(){
+        public static function activate(){
             /***Insert Update Activate and Download***/
             if ( ! function_exists( 'get_plugins' ) ) {
                 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -129,11 +129,13 @@ if(!class_exists('Coceca_Plugin')){
             $installed_plugins = get_plugins();
             if(array_key_exists('coceca/coceca.php',$installed_plugins)){
                 InsertActivateDownload(1,'');
+                $is_plugin_exists = checkDomainExists();
+                coceca_active_deactive($is_plugin_exists['id'],$is_plugin_exists['user_id'],true);
                 update_option('EXT_SITE_URL', 'https://coceca.com/members_area/');
             }
         }
 
-        public function deactivate(){
+        public static function deactivate(){
             /***Update Activate and Download***/
             if ( ! function_exists( 'get_plugins' ) ) {
                 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -141,6 +143,8 @@ if(!class_exists('Coceca_Plugin')){
             $installed_plugins = get_plugins();
             if(array_key_exists('coceca/coceca.php',$installed_plugins)){
                 UpdateActivateDownload(1,'');
+                $is_plugin_exists = checkDomainExists();
+                coceca_active_deactive($is_plugin_exists['id'],$is_plugin_exists['user_id'],false);
                 update_option('EXT_SITE_URL', '');
             }
 
@@ -212,21 +216,24 @@ if(!class_exists('Coceca_Plugin')){
         * */
         function coceca_upgradeMembership(){
             global $wpdb;
+
             if(!check_admin_referer( 'gopro-CoCeCa_'.absint($_GET['plugin_id']), 'com_nonce' ) ) {
                 wp_die('You have taken too long. Please go back and retry.', '', array( 'response' => 403 ) );
             }
 
             $is_paypal = false;
-
+            $admin_redirect_uri = $_POST['admin_redirect_uri'];
             $response = '';
-            $coupon_code = $paypal_payment = $coupon_data= '';
+            $coupon_code = $paypal_payment = $coupon_data= $coupon_data_sr = '';
             $coupon_code = $_POST['coupon_code'];
             if(isset($coupon_code) && $coupon_code!=''){
+                $coupon_sepcial_chr = preg_replace('/[^a-zA-Z0-9 \[\]\.\-]/s', '', $coupon_code);
                 $coupon_data = checkValidCoupon($coupon_code);
+
                 if($coupon_data!='' && count($coupon_data) > 0){
                     $response['flag'] = 'success';
                     $response['msg'] = 'Valid coupon code.';
-                    $coupon_data_sr = serialize($coupon_data);
+                    $coupon_data_sr = toPublicId($coupon_data['id']);
                 }
                 else{
                     $response['flag'] = 'error';
@@ -243,7 +250,7 @@ if(!class_exists('Coceca_Plugin')){
             }
 
             $encrpted_string = syonencryptor('encrypt',getHost().':'.absint($_GET['plugin_id']));
-            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint($_GET['plugin_id']).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.admin_url();
+            $redirect_url = EXT_SITE_URL.'wpapi/purchase_plugins/?check_host='.getHost().'&plugin_id='.absint(toPublicId($_GET['plugin_id'])).'&pass_code='.$encrpted_string.'&coupon_data='.$coupon_data_sr.'&paypal_payment='.$paypal_payment.'&redirect_url='.$admin_redirect_uri;
 
             if(!empty($coupon_data)){
                 $response['redirect_url'] = $redirect_url;
@@ -515,7 +522,7 @@ if(!class_exists('Coceca_Plugin')){
                 // Populate $plugin array with necessary information.
                 $plugin['name']   = $_GET['plugin_name'];
                 $plugin['slug']   = $_GET['plugin'];
-                $plugin['source'] = $_GET['plugin_source'];
+                $plugin['source'] = isset($_GET['plugin_source']) ? $_GET['plugin_source'] : '';
 
                 $plugin_data = get_plugins( '/' . $plugin['slug'] ); // Retrieve all plugins.
                 $plugin_file = array_keys( $plugin_data ); // Retrieve all plugin files from installed plugins.

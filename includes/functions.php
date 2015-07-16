@@ -127,15 +127,13 @@ function insertPluginData($data){
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/insertPluginData/',$insertData);
 }
 
-function checkTrialExpired($getDate=false){
+function checkTrialExpired($plugin_id){
     $api_data = array(
         'is_json'=>'1',
+        'plugin_id'=>$plugin_id,
         'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
         'check_host'=>getHost(),
     );
-    if($getDate==true){
-        $api_data['getDate'] = $getDate;
-    }
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/trialExpired/',$api_data);
     return json_decode($result,true);
 }
@@ -159,7 +157,7 @@ function CallAPI($method, $url, $data = false)
                 $url = sprintf("%s?%s", $url, http_build_query($data));
     }
 
-    //echo $url; die;
+   //echo $url; die;
 
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -185,17 +183,17 @@ function getHost(){
 // Function to get the client IP address
 function get_client_ip() {
     $ipaddress = '';
-    if ($_SERVER['HTTP_CLIENT_IP'])
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-    else if($_SERVER['HTTP_X_FORWARDED_FOR'])
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
         $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    else if($_SERVER['HTTP_X_FORWARDED'])
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
         $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-    else if($_SERVER['HTTP_FORWARDED_FOR'])
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
         $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-    else if($_SERVER['HTTP_FORWARDED'])
+    else if(isset($_SERVER['HTTP_FORWARDED']))
         $ipaddress = $_SERVER['HTTP_FORWARDED'];
-    else if($_SERVER['REMOTE_ADDR'])
+    else if(isset($_SERVER['REMOTE_ADDR']))
         $ipaddress = $_SERVER['REMOTE_ADDR'];
     else
         $ipaddress = 'UNKNOWN';
@@ -228,16 +226,30 @@ function UpdateActivateDownload($mpid='',$cpid=''){
     return json_decode($result,true);
 }
 
-function user_activate_deactivate_plugins($m_p_id='',$user_id){
+function user_activate_deactivate_plugins($m_p_id='',$user_id,$activate_deactive){
     $api_data = array(
         'is_json'=>'1',
         'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
         'host_name'=>getHost(),
         'm_p_id' =>$m_p_id,
         'user_id' =>$user_id,
+        'is_activated' =>$activate_deactive
     );
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/user_activate_deactivate_plugins/',$api_data);
     //print_r($result); die;
+    return json_decode($result,true);
+}
+
+function coceca_active_deactive($m_p_id='',$user_id='',$activate_deactive){
+    $api_data = array(
+        'is_json'=>'1',
+        'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
+        'host_name'=>getHost(),
+        'm_p_id' =>$m_p_id,
+        'user_id' =>$user_id,
+        'is_activated' =>$activate_deactive
+    );
+    $result = CallAPI('GET',EXT_SITE_URL.'wpapi/coceca_active_deactive/',$api_data);
     return json_decode($result,true);
 }
 
@@ -274,4 +286,18 @@ function checkValidCoupon($coupon_code){
     );
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/checkValidCoupon/',$api_data);
     return json_decode($result,true);
+}
+
+if(!function_exists('toPublicId')){
+    function toPublicId($id)
+    {
+        return $id * 14981488888 + 8259204988888;
+    }
+}
+
+if (!function_exists('toInternalId')) {
+    function toInternalId($publicId)
+    {
+        return ($publicId - 8259204988888) / 14981488888;
+    }
 }
