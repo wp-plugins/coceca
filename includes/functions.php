@@ -127,7 +127,7 @@ function insertPluginData($data){
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/insertPluginData/',$insertData);
 }
 
-function checkTrialExpired($plugin_id){
+function checkTrialExpired($plugin_id=1){
     $api_data = array(
         'is_json'=>'1',
         'plugin_id'=>$plugin_id,
