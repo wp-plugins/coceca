@@ -84,10 +84,13 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 3. Here is the specific page where you can add endless number of rules for all your Call To Action, so you can create many Call To Action and play them around where and when they should be displayed, or perhaps you can define rules for some to be displayed on Desktops while others on only Mobile devices.
 4. You can see all your Call To Action you have created here in one page, you can choose which one to activate or deactivate any of them by one click.
 5. Example 1: for limited type of Call To action.
-6. Example 2: for unlimited type, you can write content as much as you can.
+6. Example 2: for unlimited type, youite content as much as you can.
 7. How it looks on mobile phone, you can easily slide to close it, very cool.
 
 == Changelog ==
+
+= 2.0 =
+* Released New Child Plugin Contact and Find us for Mobile
 
 = 1.6 =
 * Modified coupan code

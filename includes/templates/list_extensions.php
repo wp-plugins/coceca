@@ -58,7 +58,7 @@
                                 <?php } ?>
                             <?php } ?>
                         <?php }else{ ?>
-                            <?php if(!checkTrialExpired()){ ?>
+                            <?php if(!checkTrialExpired($plugins['id'])){ ?>
                                 <a href="<?php echo $plugin_page_url;?>" class="installed button"> Manage Plugin </a>
                             <?php }else{ ?>
                                 <!--<a href="<?php /*echo wp_nonce_url(admin_url('admin-ajax.php?action=cta_gopro&plugin_id=1'),'gopro-CTA_1', 'com_nonce'); */?>" class="button"> Go For Pro </a>-->

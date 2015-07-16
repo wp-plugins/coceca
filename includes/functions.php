@@ -127,15 +127,13 @@ function insertPluginData($data){
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/insertPluginData/',$insertData);
 }
 
-function checkTrialExpired($getDate=false){
+function checkTrialExpired($plugin_id){
     $api_data = array(
         'is_json'=>'1',
+        'plugin_id'=>$plugin_id,
         'token'=>'VXJ6dpIpZELStgGoxXqtYh34lIpF1sQn',
         'check_host'=>getHost(),
     );
-    if($getDate==true){
-        $api_data['getDate'] = $getDate;
-    }
     $result = CallAPI('GET',EXT_SITE_URL.'wpapi/trialExpired/',$api_data);
     return json_decode($result,true);
 }
