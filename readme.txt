@@ -89,6 +89,9 @@ Like any other WordPress plugin, pretty easy, for exact steps, please follow thi
 
 == Changelog ==
 
+== 2.1 ==
+* Fixed the version capturing bug
+
 = 2.0 =
 * Released New Child Plugin Contact and Find us for Mobile
 
